@@ -4,19 +4,27 @@ using System.Collections.Generic;
 public class ObstacleSpawner : MonoBehaviour
 {
     public float timer;
+    public float timerCoin;
     public float timerSpawn;
+    public float timerSpawnCoin;
     public List<GameObject> obstacles = new();
+    public GameObject coin;
 
     // Update is called once per frame
     void Update()
     {
+        if (timerCoin >= timerSpawnCoin)
+        {
+            SpawnCoin();
+            timerCoin = 0;
+        }
         if (timer >= timerSpawn)
         {
-            print("spawn");
             SpawnObstacles();
             timer = 0;
         }
         timer += Time.deltaTime;
+        timerCoin += Time.deltaTime;
     }
 
     private void SpawnObstacles()
@@ -31,5 +39,10 @@ public class ObstacleSpawner : MonoBehaviour
 
         // 3️⃣ Instancier le prefab
         Instantiate(obstacleRandom, transform.position, Quaternion.identity);
+    }
+
+        private void SpawnCoin()
+    {
+        Instantiate(coin, transform.position, Quaternion.identity);
     }
 }

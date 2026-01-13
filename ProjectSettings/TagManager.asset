@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Sol
+  - coin
   layers:
   - Default
   - TransparentFX
